@@ -1,9 +1,17 @@
 import { ObjectId } from "mongodb";
 import db from "../config/db";
 
-export interface AuthInterface {
+export interface Login {
   email: string;
   password: string;
+}
+
+export interface CreateUser {
+  email: string;
+  password: string;
+  name: string;
+  companyId: string;
+  manager: boolean;
 }
 
 export interface UserData {
@@ -12,5 +20,10 @@ export interface UserData {
   password: string;
   name: string;
   image: string;
-  admin: boolean;
+  manager: boolean;
+  companies: number[];
+}
+
+export interface CreateCompany {
+  name: string;
 }

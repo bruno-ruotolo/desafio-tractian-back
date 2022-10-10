@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
-import { UserData } from "./../interfaces/index";
+import { CreateUser, UserData } from "./../interfaces/index";
 import db from "../config/db.js";
 
 export async function getUserByEmail(email: string) {
@@ -18,22 +18,25 @@ export async function createSession(_id: ObjectId, token: string) {
   });
 }
 
+export async function createUser(userBody: CreateUser) {
+  await db.collection("users").insertOne(userBody);
+}
+
 export async function insertAdminUser() {
-  const _PASSWORD = "123Emerson";
-  const _EMAIL = "emerson@naittrac.com";
-  const _IMAGE =
-    "https://img.freepik.com/premium-vector/cartoon-drawing-construction-worker_29937-8198.jpg";
-  const _NAME = "Emerson";
+  const _PASSWORD = "123tractian";
+  const _EMAIL = "tractian@naittrac.com";
+  const _NAME = "Tractian";
   const _ADMIN = true;
+  const _COMPANIES = [1];
   const _SALT = 10;
   const hashedPassword = bcrypt.hashSync(_PASSWORD, _SALT);
 
   await db.collection("users").insertOne({
     email: _EMAIL,
     password: hashedPassword,
-    image: _IMAGE,
     name: _NAME,
-    admin: _ADMIN,
+    manager: _ADMIN,
+    companies: _COMPANIES,
   });
   const findUser = await db.collection("users").findOne({ email: _EMAIL });
   if (!findUser) return "Something got wrong";
