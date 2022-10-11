@@ -8,6 +8,7 @@ export const createAssetSchema = Joi.object<CreateAsset>({
   description: Joi.string().required(),
   model: Joi.string().required(),
   owner: Joi.string().required(),
+  unityId: Joi.string().required(),
 });
 
 const assetsSchema = { createAssetSchema };

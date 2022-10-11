@@ -1,4 +1,7 @@
-import { getAllUsers } from "../repositories/usersRepository.js";
+import {
+  getAllUsers,
+  getUsersByCompany,
+} from "../repositories/usersRepository.js";
 
 export async function getAllUsersService() {
   const users = await getAllUsers();
@@ -13,4 +16,9 @@ export async function getAllUsersService() {
     }
   });
   return { employees, managers };
+}
+
+export async function getUsersCompanyService(companyId: string) {
+  const users = await getUsersByCompany(companyId);
+  return users;
 }

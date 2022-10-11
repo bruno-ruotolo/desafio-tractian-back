@@ -1,20 +1,25 @@
-// import { Router } from "express";
+import { Router } from "express";
+import {
+  createAssetController,
+  getAssetController,
+  getAssetsController,
+} from "../controllers/assetsController.js";
 
-// import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
+import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
 
-// import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
-// import assetsSchema from "../schemas/assetsSchema.js";
+import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
+import assetsSchema from "../schemas/assetsSchema.js";
 
-// const unitsRouter = Router();
+const assetsRouter = Router();
 
-// unitsRouter.get("/assets", authTokenMiddleware, getAssetsController);
-// unitsRouter.get("/assets/:id", authTokenMiddleware, getAssetController);
+assetsRouter.get("/assets/:id", authTokenMiddleware, getAssetController);
+assetsRouter.get("/assets/unity/:id", authTokenMiddleware, getAssetsController);
 
-// unitsRouter.post(
-//   "/assets",
-//   authTokenMiddleware,
-//   schemaValidator(assetsSchema.createAssetSchema),
-//   createAssetController
-// );
+assetsRouter.post(
+  "/assets",
+  authTokenMiddleware,
+  schemaValidator(assetsSchema.createAssetSchema),
+  createAssetController
+);
 
-// export default unitsRouter;
+export default assetsRouter;

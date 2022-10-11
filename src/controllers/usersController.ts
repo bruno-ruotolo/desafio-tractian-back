@@ -1,8 +1,19 @@
 import { Response, Request } from "express";
-import { getAllUsersService } from "../services/usersService.js";
+import {
+  getAllUsersService,
+  getUsersCompanyService,
+} from "../services/usersService.js";
 
-export async function getAllUsers(req: Request, res: Response) {
+export async function getAllUsersController(req: Request, res: Response) {
   const users = await getAllUsersService();
+
+  res.status(200).send(users);
+}
+
+export async function getUsersCompanyController(req: Request, res: Response) {
+  const { id: companyId } = req.params;
+
+  const users = await getUsersCompanyService(companyId);
 
   res.status(200).send(users);
 }

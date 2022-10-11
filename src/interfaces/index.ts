@@ -47,6 +47,7 @@ export interface CreateAsset {
   description: string;
   model: string;
   owner: string;
+  unityId: string;
 }
 
 export interface DeleteUserOrCompany {
