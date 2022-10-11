@@ -1,11 +1,19 @@
-import { CreateUser } from "./../interfaces/index";
+import { ObjectId } from "mongodb";
+import { CreateUser, UpdateUser } from "./../interfaces/index";
 import bcrypt from "bcrypt";
 import {
   createSession,
   createUser,
+  deleteUser,
   getUserByEmail,
+  getUserById,
+  updateUser,
 } from "../repositories/authRepository.js";
-import { conflictError, unauthorizedError } from "../utils/errorUtil.js";
+import {
+  conflictError,
+  notFoundError,
+  unauthorizedError,
+} from "../utils/errorUtil.js";
 import { generateJWTToken } from "../utils/utils.js";
 
 import { Login, UserData } from "./../interfaces";
@@ -33,6 +41,20 @@ export async function createUserService(userBody: CreateUser) {
   await createUser({ ...userBody, password: passwordHash });
 }
 
+export async function updateUserService(userBody: UpdateUser) {
+  const { id, password } = userBody;
+  await checkUserExist(id);
+
+  const passwordHash = encryptPassword(password);
+
+  await updateUser({ ...userBody, password: passwordHash });
+}
+
+export async function deleteUserService(userId: string) {
+  await checkUserExist(userId);
+  await deleteUser(userId);
+}
+
 function decryptPassword(password: string, hashedPassword: string) {
   if (!bcrypt.compareSync(password, hashedPassword)) {
     throw unauthorizedError("Username/Password is not valid");
@@ -46,6 +68,13 @@ function encryptPassword(password: string) {
 
 async function checkEmailExist(email: string): Promise<UserData> {
   return getUserByEmail(email);
+}
+
+async function checkUserExist(userId: string) {
+  const user = await getUserById(userId);
+  if (!user) {
+    throw notFoundError("This user do not exist");
+  }
 }
 
 async function checkEmailAlreadyExist(email: string) {

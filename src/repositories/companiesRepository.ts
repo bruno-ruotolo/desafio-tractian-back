@@ -10,7 +10,7 @@ export async function getCompanyByUserId(userId: ObjectId) {
 }
 
 export async function getCompanyById(companyId: ObjectId) {
-  return db.collection("companies").findOne({ _id: companyId });
+  return db.collection("companies").findOne({ _id: new ObjectId(companyId) });
 }
 
 export async function getCompanyByName(name: string) {

@@ -12,12 +12,7 @@ import authSchema from "../schemas/authSchema.js";
 const authRouter = Router();
 
 authRouter.post("/admin/signUp", signUpController);
-authRouter.post(
-  "/user",
-  authTokenMiddleware,
-  schemaValidator(authSchema.createUser),
-  createUserController
-);
+
 authRouter.post("/", schemaValidator(authSchema.loginSchema), signInController);
 
 export default authRouter;

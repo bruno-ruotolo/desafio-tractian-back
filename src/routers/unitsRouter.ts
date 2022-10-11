@@ -7,16 +7,21 @@ import {
 import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
 
 import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
+import unitsSchema from "../schemas/unitsSchema.js";
+import {
+  createUnityController,
+  getUnitsController,
+} from "../controllers/unitsController.js";
 
-const companiesRouter = Router();
+const unitsRouter = Router();
 
-companiesRouter.get("/companies", authTokenMiddleware, getCompaniesController);
+unitsRouter.get("/units/:id", authTokenMiddleware, getUnitsController);
 
-companiesRouter.post(
-  "/companies",
+unitsRouter.post(
+  "/units/:id",
   authTokenMiddleware,
-  schemaValidator(companiesSchema),
-  createCompanyController
+  schemaValidator(unitsSchema.createUnitySchema),
+  createUnityController
 );
 
-export default companiesRouter;
+export default unitsRouter;

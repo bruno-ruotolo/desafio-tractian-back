@@ -32,7 +32,6 @@ export async function createCompanyService(
 
 async function checkCompanyExist(companyName: string) {
   const company = await getCompanyByName(companyName);
-  console.log(company);
 
   if (company) {
     throw conflictError("This company is already registered");

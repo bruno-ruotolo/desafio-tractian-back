@@ -1,7 +1,18 @@
-import { Login, UserData } from "./../interfaces/index";
+import {
+  CreateUser,
+  DeleteUserOrCompany,
+  Login,
+  UpdateUser,
+  UserData,
+} from "./../interfaces/index";
 import { Request, Response } from "express";
 import { insertAdminUser } from "../repositories/authRepository.js";
-import { createUserService, signInService } from "../services/authService.js";
+import {
+  createUserService,
+  deleteUserService,
+  signInService,
+  updateUserService,
+} from "../services/authService.js";
 
 export async function signInController(req: Request, res: Response) {
   const signInBody: Login = req.body;
@@ -18,8 +29,22 @@ export async function signUpController(req: Request, res: Response) {
 }
 
 export async function createUserController(req: Request, res: Response) {
-  const userBody = req.body;
+  const userBody: CreateUser = req.body;
   await createUserService(userBody);
+
+  res.sendStatus(201);
+}
+
+export async function updateUserController(req: Request, res: Response) {
+  const userBody: UpdateUser = req.body;
+  await updateUserService(userBody);
+
+  res.sendStatus(201);
+}
+
+export async function deleteUserController(req: Request, res: Response) {
+  const { id } = req.params;
+  await deleteUserService(id);
 
   res.sendStatus(201);
 }

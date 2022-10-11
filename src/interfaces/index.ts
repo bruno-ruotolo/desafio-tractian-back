@@ -14,6 +14,15 @@ export interface CreateUser {
   manager: boolean;
 }
 
+export interface UpdateUser {
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  companyId: string;
+  manager: boolean;
+}
+
 export interface UserData {
   _id: ObjectId;
   email: string;
@@ -26,4 +35,20 @@ export interface UserData {
 
 export interface CreateCompany {
   name: string;
+}
+
+export interface CreateUnity {
+  name: string;
+}
+
+export interface CreateAsset {
+  title: string;
+  image: string;
+  description: string;
+  model: string;
+  owner: string;
+}
+
+export interface DeleteUserOrCompany {
+  id: string;
 }

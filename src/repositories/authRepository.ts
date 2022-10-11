@@ -1,12 +1,19 @@
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
-import { CreateUser, UserData } from "./../interfaces/index";
+import { CreateUser, UpdateUser, UserData } from "./../interfaces/index";
 import db from "../config/db.js";
 
 export async function getUserByEmail(email: string) {
   const userData = (await db
     .collection("users")
     .findOne({ email: email.toLowerCase() })) as UserData;
+  return userData;
+}
+
+export async function getUserById(_id: string) {
+  const userData = await db
+    .collection("users")
+    .findOne({ _id: new ObjectId(_id) });
   return userData;
 }
 
@@ -20,6 +27,20 @@ export async function createSession(_id: ObjectId, token: string) {
 
 export async function createUser(userBody: CreateUser) {
   await db.collection("users").insertOne(userBody);
+}
+
+export async function updateUser(userBody: UpdateUser) {
+  const { id, email, password, name, companyId, manager } = userBody;
+  await db
+    .collection("users")
+    .updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { email, password, name, companyId, manager } }
+    );
+}
+
+export async function deleteUser(_id: string) {
+  await db.collection("users").deleteOne({ _id: new ObjectId(_id) });
 }
 
 export async function insertAdminUser() {
