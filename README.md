@@ -48,6 +48,15 @@ If you want to use the deployed API access: https://desafio-tractian-ruotolo.her
 
 Here you can check the endpoints related to the project, as well as their respective characteristics. Have Fun 😄
 
+## How to User
+
+You can use the default login simulating an internal registration made by the company: 
+
+```
+e-mail: tractian@naittrac.com
+password: 123tractian
+```
+
 ## Routes
 ### Authentication Routes
 
@@ -67,6 +76,71 @@ Here you can check the endpoints related to the project, as well as their respec
 jwtrandomtoken
 ```
 ---
+
+### Companies Routes
+
+#### Create Company
+- POST _/companies_
+
+- Body
+```json
+{
+  "name": "company name",
+}
+```
+
+#### Get companies from the logged in user
+- GET _/companies_
+
+- Response
+```json
+[
+    {
+      "_id":"company unique ID",
+      "name": "company name",
+    },
+    {...}
+]
+```
+
+### Units Routes
+
+#### Create Unity
+- POST _/units/:companyId_
+
+- Body
+```json
+{
+  "name": "unity name",
+}
+```
+
+#### Get units from a specific company
+- GET _/units/:companyId_
+
+- Response
+```json
+[
+    {
+      "_id":"unit unique id",
+      "name": "unit name",
+      "companyId": "company id",
+      "assets": [
+        {
+            "_id":"asset unique id",
+            "title": "asset title",
+            "image": "asset image link",
+            "description": "asset description",
+            "model": "asset model",
+            "unityId": "asset unit id",
+            "owner": "asset owner user Id"
+        },
+        {...}
+      ],
+    },
+    {...}
+]
+```
 
 ## Authors
 ### Bruno Ruotolo
