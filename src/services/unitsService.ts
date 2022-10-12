@@ -10,11 +10,21 @@ import {
   getUnitsByCompanyId,
   getUnityByNameAndCompanyId,
 } from "../repositories/unitsRepository.js";
+import { getAssetsByUnityId } from "../repositories/assetsRepository.js";
 
 export async function getUnityService(companyId: string) {
   const units = await getUnitsByCompanyId(companyId);
 
-  return units;
+  const unitsData = Promise.all(
+    units.map(async (unity) => {
+      const { _id } = unity;
+      const assets = await getAssetsByUnityId(_id.toString());
+      const data = { ...unity, assets };
+      return data;
+    })
+  );
+
+  return unitsData;
 }
 
 export async function createUnityService(

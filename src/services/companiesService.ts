@@ -11,10 +11,13 @@ import { conflictError } from "../utils/errorUtil.js";
 
 export async function getCompaniesService(userId: ObjectId) {
   const userCompanyArr = await getCompanyByUserId(userId);
+  console.log(userCompanyArr);
 
   const companies = await Promise.all(
     userCompanyArr.map(async (userCompany) => {
-      return await getCompanyById(userCompany.companyId);
+      const company = await getCompanyById(userCompany.companyId);
+      console.log(company);
+      return company;
     })
   );
 

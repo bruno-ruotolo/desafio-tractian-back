@@ -53,3 +53,13 @@ export interface CreateAsset {
 export interface DeleteUserOrCompany {
   id: string;
 }
+
+export interface UpdateHealth {
+  health: number;
+  assetId: string;
+}
+
+export interface UpdateStatus {
+  status: string;
+  assetId: string;
+}
