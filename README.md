@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-    <h3 align="center">Naiitrac</h3>
+    <h3 align="center">Naittrac</h3>
     <p> Track and Manage your Assets Quickly, Easily and Online </p>
 </div>
 
