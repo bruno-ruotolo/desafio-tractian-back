@@ -305,7 +305,7 @@ jwtrandomtoken
 - Response
 ```json
 {
-    "healthArr": [] // Array of health records
+    "healthArr": [] // Array of health records,
     "timeArr": [] // Array of health record times
 }
 ```
@@ -323,13 +323,129 @@ jwtrandomtoken
 - Response
 ```json
 {
-    "_id": "status id"
-    "status": "status"
-    "assetId": "asset id"
+    "_id": "status id",
+    "status": "status",
+    "assetId": "asset id",
     "time": "status record time"
 }
 ```
+### User Routes
 
+#### Create User
+- POST _/users_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Body
+```json
+{
+    "email": "user email",
+    "password": "user password"
+    "name": "user name",
+    "companyId": "user company Id",
+    "manager": "'true' if user is a manager or 'false' if isn't"
+}
+```
+
+#### Get All Users
+- GET _/users_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+{
+    "employees": [
+        {
+            "_id": "user unique id"
+            "email": "user email",
+            "password": "encrypted user password"
+            "name": "user name",
+            "companyId": "user company Id",
+            "manager": false
+        },
+        {...}
+    ]  
+    "managers": [
+        {
+            "_id": "user unique id"
+            "email": "user email",
+            "password": "encrypted user password"
+            "name": "user name",
+            "companyId": "user company Id",
+            "manager": true
+        },
+        {...}
+    ]
+}
+```
+
+#### Get User from a specific company
+- GET _/users/company/:companyID_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+[
+    {
+        "_id": "user unique id"
+        "email": "user email",
+        "password": "encrypted user password"
+        "name": "user name",
+        "companyId": "user company Id",
+        "manager": "'true' if user is a manager or 'false' if isn't"
+    },
+    {...}
+]  
+```
+
+#### Delete a User
+- Delete _/users/:userId_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+#### Update a User
+- PUT _/users_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Body
+```json
+{
+    "id": "user unique id"
+    "email": "user email",
+    "password": "user password"
+    "name": "user name",
+    "companyId": "user company Id",
+    "manager": "'true' if user is a manager or 'false' if isn't"
+}
+```
 
 ## Authors
 ### Bruno Ruotolo
