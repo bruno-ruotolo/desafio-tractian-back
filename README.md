@@ -44,11 +44,7 @@ You can now access the API's endpoints locally.
 
 If you want to use the deployed API access: https://desafio-tractian-ruotolo.herokuapp.com/
 
-# API Reference
-
-Here you can check the endpoints related to the project, as well as their respective characteristics. Have Fun 😄
-
-## How to User
+## How to Use
 
 You can use the default login simulating an internal registration made by the company: 
 
@@ -56,6 +52,10 @@ You can use the default login simulating an internal registration made by the co
 e-mail: tractian@naittrac.com
 password: 123tractian
 ```
+
+# API Reference
+
+Here you can check the endpoints related to the project, as well as their respective characteristics. Have Fun 😄
 
 ## Routes
 ### Authentication Routes
