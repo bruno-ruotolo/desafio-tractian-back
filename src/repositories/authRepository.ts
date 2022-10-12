@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
-import { CreateUser, UpdateUser, UserData } from "./../interfaces/index";
+
 import db from "../config/db.js";
+import { CreateUser, UpdateUser, UserData } from "./../interfaces/index";
 
 export async function getUserByEmail(email: string) {
   const userData = (await db

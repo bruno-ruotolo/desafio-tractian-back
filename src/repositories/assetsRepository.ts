@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
-import { CreateAsset, UpdateHealth, UpdateStatus } from "./../interfaces/index";
+
 import db from "../config/db.js";
+import { CreateAsset, UpdateHealth, UpdateStatus } from "./../interfaces/index";
 
 export async function createAsset(data: CreateAsset) {
   return db.collection("assets").insertOne(data);

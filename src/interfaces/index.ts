@@ -1,5 +1,4 @@
 import { ObjectId } from "mongodb";
-import db from "../config/db";
 
 export interface Login {
   email: string;

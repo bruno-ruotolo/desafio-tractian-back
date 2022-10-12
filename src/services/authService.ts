@@ -1,6 +1,6 @@
-import { ObjectId } from "mongodb";
-import { CreateUser, UpdateUser } from "./../interfaces/index";
 import bcrypt from "bcrypt";
+
+import { CreateUser, UpdateUser } from "./../interfaces/index";
 import {
   createSession,
   createUser,
@@ -15,7 +15,6 @@ import {
   unauthorizedError,
 } from "../utils/errorUtil.js";
 import { generateJWTToken } from "../utils/utils.js";
-
 import { Login, UserData } from "./../interfaces";
 
 export async function signInService(signInBody: Login) {

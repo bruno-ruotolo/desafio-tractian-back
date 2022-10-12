@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
-import { CreateCompany } from "./../interfaces/index";
+
 import db from "../config/db.js";
+import { CreateCompany } from "./../interfaces/index";
 
 export async function getCompanyByUserId(userId: ObjectId) {
   return db

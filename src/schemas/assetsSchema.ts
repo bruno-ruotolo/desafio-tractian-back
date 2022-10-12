@@ -1,11 +1,6 @@
 import Joi from "joi";
 
-import {
-  CreateAsset,
-  CreateUnity,
-  UpdateHealth,
-  UpdateStatus,
-} from "./../interfaces/index";
+import { CreateAsset, UpdateHealth, UpdateStatus } from "./../interfaces/index";
 
 export const createAssetSchema = Joi.object<CreateAsset>({
   title: Joi.string().required(),

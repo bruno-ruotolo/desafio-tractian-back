@@ -1,11 +1,6 @@
-import {
-  CreateUser,
-  DeleteUserOrCompany,
-  Login,
-  UpdateUser,
-  UserData,
-} from "./../interfaces/index";
 import { Request, Response } from "express";
+
+import { CreateUser, Login, UpdateUser } from "./../interfaces/index";
 import { insertAdminUser } from "../repositories/authRepository.js";
 import {
   createUserService,

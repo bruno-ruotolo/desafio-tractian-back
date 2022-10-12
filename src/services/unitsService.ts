@@ -1,9 +1,7 @@
 import { ObjectId } from "mongodb";
+
 import { CreateUnity } from "./../interfaces/index.js";
-import {
-  getCompanyById,
-  getCompanyByUserId,
-} from "../repositories/companiesRepository.js";
+import { getCompanyById } from "../repositories/companiesRepository.js";
 import { conflictError } from "../utils/errorUtil.js";
 import {
   createUnity,

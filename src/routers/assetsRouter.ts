@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   createAssetController,
   getAssetController,
@@ -8,9 +9,7 @@ import {
   updateHealthController,
   updateStatusController,
 } from "../controllers/assetsController.js";
-
 import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
-
 import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
 import assetsSchema from "../schemas/assetsSchema.js";
 

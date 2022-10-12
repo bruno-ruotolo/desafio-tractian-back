@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   createUserController,
   deleteUserController,
@@ -9,7 +10,6 @@ import {
   getUsersCompanyController,
 } from "../controllers/usersController.js";
 import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
-
 import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
 import userSchema from "../schemas/usersSchema.js";
 

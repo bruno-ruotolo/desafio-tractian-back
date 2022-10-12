@@ -1,6 +1,6 @@
 import { Router } from "express";
-import assetsRouter from "./assetsRouter.js";
 
+import assetsRouter from "./assetsRouter.js";
 import authRouter from "./authRouter.js";
 import companiesRouter from "./companiesRouter.js";
 import unitsRouter from "./unitsRouter.js";

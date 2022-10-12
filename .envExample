@@ -1,0 +1,4 @@
+MONGO_URI = Your mongoDB connection URI 
+PORT = Your Running Port
+DB_NAME = Your DataBase Name
+JWT_SECRET_KEY = An JWT Secret Key

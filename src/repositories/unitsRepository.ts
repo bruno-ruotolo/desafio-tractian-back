@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
-import { CreateUnity } from "../interfaces/index";
+
 import db from "../config/db.js";
+import { CreateUnity } from "../interfaces/index";
 
 export async function createUnity(data: CreateUnity & { companyId: string }) {
   return db.collection("units").insertOne(data);

@@ -1,11 +1,6 @@
-import { companiesSchema } from "./../schemas/companiesSchema.js";
 import { Router } from "express";
-import {
-  createCompanyController,
-  getCompaniesController,
-} from "../controllers/companiesController.js";
-import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
 
+import authTokenMiddleware from "../middlewares/authTokenMiddleware.js";
 import { schemaValidator } from "../middlewares/schemaValidatorMiddleware.js";
 import unitsSchema from "../schemas/unitsSchema.js";
 import {
