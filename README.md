@@ -82,6 +82,13 @@ jwtrandomtoken
 #### Create Company
 - POST _/companies_
 
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
 - Body
 ```json
 {
@@ -91,6 +98,13 @@ jwtrandomtoken
 
 #### Get companies from the logged in user
 - GET _/companies_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
 
 - Response
 ```json
@@ -108,6 +122,13 @@ jwtrandomtoken
 #### Create Unity
 - POST _/units/:companyId_
 
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
 - Body
 ```json
 {
@@ -117,6 +138,13 @@ jwtrandomtoken
 
 #### Get units from a specific company
 - GET _/units/:companyId_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
 
 - Response
 ```json
@@ -141,6 +169,167 @@ jwtrandomtoken
     {...}
 ]
 ```
+
+### Assets Routes
+
+#### Create Asset
+- POST _/assets_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Body
+```json
+{
+    "title": "asset title",
+    "image": "asset image link",
+    "description": "asset description",
+    "model": "asset model",
+    "unityId": "asset unit id",
+    "owner": "asset owner user Id"
+}
+```
+
+#### Update Asset Health
+- POST _/asset/health_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Body
+```json
+{
+    "health": "health between 0 and 100",
+    "assetId": "asset unique id",
+}
+```
+
+#### Update Asset Status
+- POST _/asset/status_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Body
+```json
+{
+    "status": "An status string 'Running' or 'Waiting' or 'Stopping' ",
+    "assetId": "asset unique id",
+}
+```
+
+#### Get a specific asset
+- GET _/assets/:assetId
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+{
+  "_id":"asset unique id",
+  "title": "asset title",
+  "image": "asset image link",
+  "description": "asset description",
+  "model": "asset model",
+  "unityId": "asset unity Id",
+  "owner": {
+    "_id":"user unique id",
+    "manager": "'true' if the user is a manager",
+    "name": "user name",
+    "email": "user email",
+    "password": "user encrypted password",
+    "companyId": "user company id",
+    "owner": "asset owner user Id"
+  },
+  "unit" : {
+    "_id":"unit unique id",
+    "name": "unit name",
+    "companyId": "unit company id"
+  }
+}
+```
+
+#### Get assets from a specific unit
+- GET _/assets/unity/:unitId_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+[
+    {
+        "_id":"asset unique id",
+        "title": "asset title",
+        "image": "asset image link",
+        "description": "asset description",
+        "model": "asset model",
+        "unityId": "asset unit id",
+        "owner": "asset owner user Id"
+    },
+    {...}
+],
+```
+
+#### Get asset health
+- GET _/asset/health/:assetId_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+{
+    "healthArr": [] // Array of health records
+    "timeArr": [] // Array of health record times
+}
+```
+
+#### Get asset status
+- GET _/asset/status/:assetId_
+
+- Header
+```json
+{
+    "Authorization" : "Bearer <token>"
+}
+```
+
+- Response
+```json
+{
+    "_id": "status id"
+    "status": "status"
+    "assetId": "asset id"
+    "time": "status record time"
+}
+```
+
 
 ## Authors
 ### Bruno Ruotolo
